@@ -26,14 +26,25 @@
   "homepage": "https://github.com/Sondestiny/acquisitions#readme",
   "description": "",
   "dependencies": {
+    "@arcjet/inspect": "^1.0.0-beta.12",
+    "@arcjet/node": "^1.0.0-beta.12",
     "@neondatabase/serverless": "^1.0.2",
+    "bcrypt": "^6.0.0",
+    "brcypt": "^1.0.1",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
-    "drizzle-kit": "^0.31.5",
-    "drizzle-orm": "^0.44.5",
-    "express": "^5.1.0"
+    "drizzle-orm": "^0.44.6",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "postgres": "^3.4.7",
+    "winston": "^3.18.3",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "drizzle-kit": "^0.31.5",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
