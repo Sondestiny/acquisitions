@@ -26,6 +26,16 @@ app.get('/api', (req, res)=> {
   return res.status(200).send('this is accquisittions API');
 });
 
+// Health check endpoint for Docker
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 app.use('/api/auth', authRouter);
 
 

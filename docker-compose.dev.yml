@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Neon Local proxy service
+  neon-local:
+    image: neondatabase/neon_local:latest
+    container_name: acquisitions-neon-local
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.development
+    networks:
+      - acquisitions-dev
+
+  # Application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acquisitions-app-dev
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.development
+    depends_on:
+      - neon-local
+    networks:
+      - acquisitions-dev
+    volumes:
+      # For development, mount source code for hot reload (optional)
+      - ./src:/app/src:ro
+      - ./package.json:/app/package.json:ro
+    # Override CMD for development with nodemon for hot reload
+    command: npm run dev
+
+networks:
+  acquisitions-dev:
+    driver: bridge

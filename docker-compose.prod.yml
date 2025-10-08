@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Application service for production
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acquisitions-app-prod
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - LOG_INFO=level
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=1d
+      - DATABASE_URL=${DATABASE_URL}
+      - ARCJET_API_KEY=${ARCJET_API_KEY}
+      - ARCJET_ENV=production
+    restart: unless-stopped
+    networks:
+      - acquisitions-prod
+    # Health check for production monitoring
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+networks:
+  acquisitions-prod:
+    driver: bridge
