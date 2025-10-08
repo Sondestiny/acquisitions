@@ -1,2 +1,63 @@
-/node_modules
-.env*
+# Dependency directories
+node_modules/
+npm-debug.log*
+
+# Environment files (will be handled by docker-compose)
+.env
+.env.*
+
+# Git
+.git
+.gitignore
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+README.md
+*.md
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and test files
+coverage/
+.nyc_output/
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
+
+# Build artifacts
+dist/
+build/
+
+# Temporary folders
+tmp/
+temp/
