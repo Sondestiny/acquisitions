@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import authRouter from './routes/auth.router.js';
 import securityMiddleware from './middlewares/security.middleware.js';
+import userRouter from './routes/user.router.js';
 const app = express();
 app.use(helmet());
 app.use(express.json());
@@ -21,11 +22,6 @@ app.get('/', (req, res)=> {
   return res.status(200).send('Hello from accquisittions');
 });
 
-app.get('/api', (req, res)=> {
-  logger.info('this is accquisittions API');
-  return res.status(200).send('this is accquisittions API');
-});
-
 // Health check endpoint for Docker
 app.get('/health', (req, res) => {
   res.status(200).json({
@@ -36,7 +32,12 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.use('/api/auth', authRouter);
+app.get('/api', (req, res)=> {
+  logger.info('this is accquisittions API');
+  return res.status(200).send('this is accquisittions API');
+});
 
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 export default app;

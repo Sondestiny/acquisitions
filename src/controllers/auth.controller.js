@@ -3,14 +3,14 @@ import logger from '../config/logger.js';
 import authService from '../services/auth.service.js';
 import cookie from '../utils/cookie.js';
 import { formatValidationErrors } from '../utils/format.js';
-import { registerSchema } from '../validations/auth.validation.js';
+import { loginSchema, registerSchema } from '../validations/auth.validation.js';
 
 
 const authController = {
   login: async (req, res, next) => {
     try {
       // Validate request body
-      const validationLogin = loginSchema.parse(req.body);
+      const validationLogin = loginSchema.safeParse(req.body);
       if (!validationLogin.success) {
         return res.status(400).json({
           error: validationLogin.error,
@@ -41,7 +41,7 @@ const authController = {
   register: async (req, res, next) => {
     try {
       // validate request body
-      const validationRegister = registerSchema.parse(req.body);
+      const validationRegister = registerSchema.safeParse(req.body);
       if (!validationRegister.success) {
         return res.status(400).json({ 
           error: validationRegister.error,
