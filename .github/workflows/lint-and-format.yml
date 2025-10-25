@@ -35,15 +35,11 @@ jobs:
 
       - name: Annotate ESLint results
         if: steps.eslint.outcome == 'failure'
-        run: |
-          echo "::error::ESLint found issues. Run 'npm run lint:fix' to fix auto-fixable issues."
-          exit 1
+        run: echo "::error::ESLint found issues. Run 'npm run lint:fix' to fix auto-fixable issues."
 
       - name: Annotate Prettier results
         if: steps.prettier.outcome == 'failure'
-        run: |
-          echo "::error::Prettier found formatting issues. Run 'npm run format' to fix formatting."
-          exit 1
+        run: echo "::error::Prettier found formatting issues. Run 'npm run format' to fix formatting."
 
       - name: Fail if any checks failed
         if: steps.eslint.outcome == 'failure' || steps.prettier.outcome == 'failure'
