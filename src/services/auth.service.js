@@ -32,7 +32,7 @@ const authService = {
       if (userExists.length > 0) {
         throw new Error('User already exists');
       }
-      const hashedPassword = await hashPassword(password);
+      const hashedPassword = await authService.hashPassword(password);
       const userData = {
         email,
         password: hashedPassword,

@@ -180,7 +180,7 @@ const userService = {
       }
 
       // Perform the deletion
-      const deletedRows = await db
+      await db
         .delete(users)
         .where(eq(users.id, parseInt(id)));
 

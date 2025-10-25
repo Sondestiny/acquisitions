@@ -1,4 +1,3 @@
-import dotenv from 'dotenv/config';
 const cookie = {
   getOptions: () => ({
     httpOnly: true,
